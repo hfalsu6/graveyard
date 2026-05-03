@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import TombstoneCard from '../components/TombstoneCard.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const companies = await getCollection('companies');
+
+const sorted = companies.sort((a, b) => {
+  if (b.data.death_year !== a.data.death_year) {
+    return b.data.death_year - a.data.death_year;
+  }
+  return b.data.published_at.localeCompare(a.data.published_at);
+});
+
+const grouped = Map.groupBy(sorted, (c) => c.data.death_year);
+const years = [...grouped.keys()].sort((a, b) => b - a);
+---
+
+<BaseLayout title="Home">
+  <SiteHeader />
+  <main style="max-width: 1280px; margin: 0 auto; padding: 0 2rem 4rem;">
+    {years.map((year) => (
+      <section style="margin-bottom: 5rem;">
+        <!-- Year divider: mono year label + horizontal rule -->
+        <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem;">
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-accent); letter-spacing: 0.12em; font-weight: 300; white-space: nowrap;">
+            {year}
+          </span>
+          <div style="flex: 1; height: 1px; background: var(--color-rule);"></div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem;">
+          {grouped.get(year)!.map((company) => (
+            <TombstoneCard
+              name={company.data.name}
+              slug={company.data.slug}
+              logo={company.data.logo}
+              logoInitials={company.data.logo_initials}
+              logoColor={company.data.logo_color}
+              foundingYear={company.data.founding_year}
+              deathYear={company.data.death_year}
+              causeOfDeath={company.data.cause_of_death}
+            />
+          ))}
+        </div>
+      </section>
+    ))}
+  </main>
+  <Footer />
+</BaseLayout>

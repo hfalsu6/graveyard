@@ -1,0 +1,49 @@
+---
+import CompanyLogo from './CompanyLogo.astro';
+
+interface Props {
+  name: string;
+  slug: string;
+  logo?: string;
+  logoInitials?: string;
+  logoColor?: string;
+  foundingYear: number;
+  deathYear: number;
+  causeOfDeath: string;
+}
+
+const { name, slug, logo, logoInitials, logoColor, foundingYear, deathYear, causeOfDeath } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<a
+  href={`${base}company/${slug}/`}
+  style="background: var(--color-surface); border: 1px solid var(--color-rule); padding: 2rem 1.75rem 1.75rem; display: flex; flex-direction: column; gap: 1rem; align-items: center; text-align: center; text-decoration: none; transition: background 0.15s ease, border-color 0.15s ease; outline-offset: 4px;"
+  class="tombstone-card"
+  aria-label={`${name}, ${foundingYear}–${deathYear}`}
+>
+  <CompanyLogo name={name} logo={logo} logoInitials={logoInitials} logoColor={logoColor} size={88} />
+
+  <div style="display: flex; flex-direction: column; gap: 0.3rem; align-items: center;">
+    <h2 style="font-family: var(--font-serif); font-weight: 500; font-size: 1.45rem; letter-spacing: 0.01em; color: var(--color-text); line-height: 1.2;">
+      {name}
+    </h2>
+    <p style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-accent); letter-spacing: 0.08em; font-weight: 300;">
+      {foundingYear} – {deathYear}
+    </p>
+  </div>
+
+  <p style="font-style: italic; color: var(--color-muted); font-family: var(--font-body); font-size: 0.9rem; line-height: 1.55; max-width: 26ch;">
+    {causeOfDeath}
+  </p>
+</a>
+
+<style>
+  .tombstone-card:hover {
+    background: var(--color-surface-2);
+    border-color: #3A3832;
+  }
+  .tombstone-card:focus-visible {
+    outline: 2px solid var(--color-accent);
+  }
+</style>

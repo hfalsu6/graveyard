@@ -1,0 +1,46 @@
+---
+import CompanyLogo from './CompanyLogo.astro';
+
+interface Props {
+  name: string;
+  tagline: string;
+  logo?: string;
+  logoInitials?: string;
+  logoColor?: string;
+  foundingYear: number;
+  deathYear: number;
+  heroHeadline: string;
+  heroSubheadline: string;
+}
+
+const { name, tagline, logo, logoInitials, logoColor, foundingYear, deathYear, heroHeadline, heroSubheadline } = Astro.props;
+---
+
+<!-- Tombstone header -->
+<section style="text-align: center; padding: clamp(3rem, 8vw, 6rem) 2rem clamp(3rem, 8vw, 5rem); border-bottom: 1px solid var(--color-rule); display: flex; flex-direction: column; align-items: center; gap: 1.25rem;">
+  <CompanyLogo name={name} logo={logo} logoInitials={logoInitials} logoColor={logoColor} size={112} />
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+    <h1 style="font-family: var(--font-serif); font-weight: 400; font-size: clamp(2.2rem, 6vw, 4rem); letter-spacing: -0.01em; line-height: 1.05; color: var(--color-text);">
+      {name}
+    </h1>
+    <p style="font-family: var(--font-body); font-style: italic; color: var(--color-muted); font-size: 1.05rem; font-weight: 300;">
+      {tagline}
+    </p>
+    <p style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-accent); letter-spacing: 0.1em; font-weight: 300; margin-top: 0.25rem;">
+      {foundingYear} – {deathYear}
+    </p>
+  </div>
+</section>
+
+<!-- Hero section -->
+<section style="text-align: center; padding: clamp(3rem, 6vw, 5rem) 2rem; border-bottom: 1px solid var(--color-rule); max-width: 760px; margin: 0 auto;">
+  <h2 style="font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1.25rem; color: var(--color-text);">
+    {heroHeadline}
+  </h2>
+  <p style="color: var(--color-muted); font-size: 1.05rem; line-height: 1.7; font-family: var(--font-body); margin-bottom: 1.75rem;">
+    {heroSubheadline}
+  </p>
+  <p style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-faint); letter-spacing: 0.1em;">
+    No longer accepting signups.
+  </p>
+</section>

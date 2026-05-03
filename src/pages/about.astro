@@ -1,0 +1,30 @@
+---
+import TombstoneLayout from '../layouts/TombstoneLayout.astro';
+---
+
+<TombstoneLayout title="About" description="About the Graveyard of Imaginary Companies project.">
+  <article class="max-w-[640px] mx-auto px-6 py-16">
+    <h1 class="font-serif text-3xl md:text-4xl font-semibold text-text mb-8">
+      About
+    </h1>
+    <div class="font-serif text-text space-y-6 leading-relaxed">
+      <p>
+        These companies do not exist. They are generated weekly by an AI and laid to rest here.
+        Every Monday, a new tombstone is added. The goal is half satire of startup culture,
+        half archaeology of an alternate timeline.
+      </p>
+      <p>
+        None of these companies were funded, sued, acquired, or held a single all-hands.
+        They were born and died inside a JSON response.
+      </p>
+      <p>
+        Each entry includes a logo, a landing page that plays it completely straight, and a
+        cause of death. The humor, such as it is, comes from the gap between the earnest pitch
+        and the inevitable collapse.
+      </p>
+      <p class="text-muted italic">
+        Subscribe via <a href={`${import.meta.env.BASE_URL}rss.xml`}>RSS</a> to be notified of new deaths.
+      </p>
+    </div>
+  </article>
+</TombstoneLayout>
