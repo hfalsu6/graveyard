@@ -5,6 +5,7 @@ import Hero from '../../components/Hero.astro';
 import FeatureBlock from '../../components/FeatureBlock.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection, render } from 'astro:content';
+import { url } from '../../lib/url';
 
 export async function getStaticPaths() {
   const companies = await getCollection('companies');
@@ -18,7 +19,6 @@ const { company } = Astro.props;
 const { Content } = await render(company);
 const d = company.data;
 
-const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
@@ -30,7 +30,7 @@ const base = import.meta.env.BASE_URL;
     <!-- Back nav -->
     <div style="padding: 0 2rem 0; max-width: 860px; margin: 0 auto 0;">
       <a
-        href={base}
+        href={url('')}
         style="color: var(--color-muted); font-family: var(--font-body); font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;"
       >
         <span style="font-size: 0.8rem;">←</span> All companies

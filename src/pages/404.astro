@@ -1,5 +1,6 @@
 ---
 import TombstoneLayout from '../layouts/TombstoneLayout.astro';
+import { url } from '../lib/url';
 ---
 
 <TombstoneLayout title="404">
@@ -12,7 +13,7 @@ import TombstoneLayout from '../layouts/TombstoneLayout.astro';
       Perhaps the company was so imaginary it couldn't even make it to the graveyard.
     </p>
     <a
-      href={import.meta.env.BASE_URL}
+      href={url('')}
       class="font-serif text-accent hover:text-text transition-colors underline"
     >
       Return to the graveyard

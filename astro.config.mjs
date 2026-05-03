@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://hfalsu6.github.io',
   base: '/graveyard',
+  trailingSlash: 'always',
   vite: {
     plugins: [tailwindcss()],
   },

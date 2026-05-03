@@ -1,11 +1,11 @@
 ---
-const base = import.meta.env.BASE_URL;
+import { url } from '../lib/url';
 ---
 
 <footer style="border-top: 1px solid var(--color-rule); margin-top: 6rem; padding: 2.5rem 2rem; text-align: center; display: flex; gap: 2rem; justify-content: center; align-items: center;">
-  <a href={`${base}about/`} style="font-family: var(--font-body); font-size: 0.85rem; color: var(--color-muted); text-decoration: none;">About</a>
+  <a href={url('about/')} style="font-family: var(--font-body); font-size: 0.85rem; color: var(--color-muted); text-decoration: none;">About</a>
   <span style="color: var(--color-faint); font-size: 0.7rem;">·</span>
-  <a href={`${base}rss.xml`} style="font-family: var(--font-body); font-size: 0.85rem; color: var(--color-muted); text-decoration: none;">RSS</a>
+  <a href={url('rss.xml')} style="font-family: var(--font-body); font-size: 0.85rem; color: var(--color-muted); text-decoration: none;">RSS</a>
   <span style="color: var(--color-faint); font-size: 0.7rem;">·</span>
   <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-faint); letter-spacing: 0.06em;">est. 2024</span>
 </footer>
